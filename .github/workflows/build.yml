@@ -1,0 +1,25 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+env:
+  PB_REL: https://github.com/protocolbuffers/protobuf/releases
+  PB_VERSION: 29.6
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: curl -LO $PB_REL/download/v$PB_VERSION/protoc-$PB_VERSION-linux-x86_64.zip
+      - run: sudo unzip protoc-$PB_VERSION-linux-x86_64.zip -d /usr/local
+      - run: shopt -s globstar; protoc -o/dev/stdout ./**/*.proto
+        shell: bash
