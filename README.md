@@ -48,3 +48,17 @@ The access token should be attached to each request as a bearer token in the
 * Token request URL: `https://auth.fl-intern.no/oauth/token`
 * Audience: `https://fl-intern.no/`
 * API base URL: `https://api.fl-intern.no`
+
+## Example
+
+After you've authenticated you'll want to send a request to see that you're
+set up properly:
+
+### gRPCurl
+
+```bash
+grpcurl -v -H 'authorization: Bearer <your token>' \
+  -proto fredrik_og_louisa/product/v1alpha/product.proto \
+  api.staging.fl-intern.no:443 \
+  fredrik_og_louisa.product.v1alpha.ProductService.ListProducts
+```
