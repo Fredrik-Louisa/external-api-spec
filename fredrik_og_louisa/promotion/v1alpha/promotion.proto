@@ -1,0 +1,37 @@
+// This API is currently EXPERIMENTAL and should be considered unstable. It may change at any point without notice.
+
+syntax = "proto3";
+
+package fredrik_og_louisa.promotion.v1alpha;
+
+import "fredrik_og_louisa/time/date.proto";
+
+service PromotionService {
+  rpc ListPromotions(ListPromotionsRequest) returns (ListPromotionsResponse);
+}
+
+message ListPromotionsRequest {
+  // Filter on promotion status. Defaults to only active promotions if left unset or empty.
+  repeated PromotionStatus status = 1;
+}
+
+message ListPromotionsResponse {
+  repeated Promotion promotions = 1;
+}
+
+message Promotion {
+  string id = 1;
+  string description = 2;
+  PromotionStatus status = 3;
+  // First date the promotion is valid
+  fredrik_og_louisa.time.Date valid_from = 4;
+  // Last date the promotion is valid
+  fredrik_og_louisa.time.Date valid_to = 5;
+}
+
+enum PromotionStatus {
+  PROMOTION_STATUS_UNSPECIFIED = 0;
+  PROMOTION_STATUS_PLANNED = 1;
+  PROMOTION_STATUS_ACTIVE = 2;
+  PROMOTION_STATUS_ENDED = 3;
+}
