@@ -4,6 +4,9 @@ syntax = "proto3";
 
 package fredrik_og_louisa.product.v1alpha;
 
+import "fredrik_og_louisa/decimal.proto";
+import "fredrik_og_louisa/money.proto";
+
 service ProductService {
   rpc ListProducts(ListProductsRequest) returns (stream Product);
 }
@@ -16,18 +19,18 @@ message Product {
   string ean = 12;
   string name = 2;
   Brand brand = 3;
-  Money sales_price = 4;
-  Decimal sales_vat_rate = 5;
-  Money cost_price = 6;
+  fredrik_og_louisa.Money sales_price = 4;
+  fredrik_og_louisa.Decimal sales_vat_rate = 5;
+  fredrik_og_louisa.Money cost_price = 6;
   // Category hierarchy ordered from least to most specific
   repeated Category category_hierarchy = 7;
   optional string parent_sku = 8;
   // Net weight in grams
-  Decimal net_weight_g = 9;
+  fredrik_og_louisa.Decimal net_weight_g = 9;
   // Gross weight in grams
-  Decimal gross_weight_g = 10;
+  fredrik_og_louisa.Decimal gross_weight_g = 10;
   // Volume in milliliters
-  Decimal volume_ml = 11;
+  fredrik_og_louisa.Decimal volume_ml = 11;
 
   string product_page_url = 13;
   string product_image_url = 14;
@@ -43,17 +46,4 @@ message Brand {
 message Category {
   string id = 1;
   string name = 2;
-}
-
-// TODO Move to common module
-message Money {
-  // TODO Currency message with conversion rate?
-  string currency_code = 1;
-  Decimal value = 2;
-}
-
-// TODO Move to common module
-message Decimal {
-  int64 units = 1;
-  int32 nanos = 2;
 }

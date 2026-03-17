@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package fredrik_og_louisa;
+
+import "fredrik_og_louisa/decimal.proto";
+
+message Money {
+  // TODO Currency message with conversion rate?
+  string currency_code = 1;
+  Decimal value = 2;
+}
