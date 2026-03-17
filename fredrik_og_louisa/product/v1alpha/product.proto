@@ -13,6 +13,7 @@ message ListProductsRequest {}
 // TODO Add product status
 message Product {
   string sku = 1;
+  string ean = 12;
   string name = 2;
   Brand brand = 3;
   Money sales_price = 4;
@@ -27,6 +28,10 @@ message Product {
   Decimal gross_weight_g = 10;
   // Volume in milliliters
   Decimal volume_ml = 11;
+
+  string product_page_url = 13;
+  string product_image_url = 14;
+  string product_thumbnail_url = 15;
 }
 
 // TODO Does this belong here?
