@@ -19,18 +19,18 @@ message Product {
   string ean = 12;
   string name = 2;
   Brand brand = 3;
-  fredrik_og_louisa.Money sales_price = 4;
-  fredrik_og_louisa.Decimal sales_vat_rate = 5;
-  fredrik_og_louisa.Money cost_price = 6;
+  Money sales_price = 4;
+  Decimal sales_vat_rate = 5;
+  Money cost_price = 6;
   // Category hierarchy ordered from least to most specific
   repeated Category category_hierarchy = 7;
   optional string parent_sku = 8;
   // Net weight in grams
-  fredrik_og_louisa.Decimal net_weight_g = 9;
+  Decimal net_weight_g = 9;
   // Gross weight in grams
-  fredrik_og_louisa.Decimal gross_weight_g = 10;
+  Decimal gross_weight_g = 10;
   // Volume in milliliters
-  fredrik_og_louisa.Decimal volume_ml = 11;
+  Decimal volume_ml = 11;
 
   string product_page_url = 13;
   string product_image_url = 14;
