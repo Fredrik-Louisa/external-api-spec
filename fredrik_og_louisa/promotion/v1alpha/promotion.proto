@@ -35,9 +35,9 @@ message Promotion {
   string description = 2;
   PromotionStatus status = 3;
   // First date the promotion is valid
-  fredrik_og_louisa.time.Date valid_from = 4;
+  time.Date valid_from = 4;
   // Last date the promotion is valid
-  fredrik_og_louisa.time.Date valid_to = 5;
+  time.Date valid_to = 5;
 }
 
 enum PromotionStatus {
@@ -54,12 +54,12 @@ message PromotionLine {
     // Multiplicative discount factor.
     // For example: a 25% discount would be represented here as 0.25.
     // Promotion price would be calculated as `base_price * (1 - factor)`.
-    fredrik_og_louisa.Decimal factor = 2;
+    Decimal factor = 2;
 
     // New sales price. This overrides the ordinary sales price with the new value.
-    fredrik_og_louisa.Money new_price = 3;
+    Money new_price = 3;
   }
 
-  fredrik_og_louisa.time.Date valid_from = 4;
-  fredrik_og_louisa.time.Date valid_to = 5;
+  time.Date valid_from = 4;
+  time.Date valid_to = 5;
 }

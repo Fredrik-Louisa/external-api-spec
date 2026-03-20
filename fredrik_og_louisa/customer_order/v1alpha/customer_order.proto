@@ -1,0 +1,40 @@
+// This API is currently EXPERIMENTAL and should be considered unstable. It may change at any point without notice.
+
+syntax = "proto3";
+
+package fredrik_og_louisa.customer_order.v1alpha;
+
+import "fredrik_og_louisa/decimal.proto";
+import "fredrik_og_louisa/money.proto";
+import "fredrik_og_louisa/time/date.proto";
+import "google/protobuf/timestamp.proto";
+
+service CustomerOrderService {
+  rpc ListCustomerOrders(ListCustomerOrdersRequest) returns (stream CustomerOrder);
+}
+
+message ListCustomerOrdersRequest {
+  time.Date from = 1;
+  time.Date to = 2;
+}
+
+message CustomerOrder {
+  string id = 1;
+  string warehouse_id = 2;
+  google.protobuf.Timestamp timestamp = 3;
+  repeated CustomerOrderLine lines = 4;
+}
+
+message CustomerOrderLine {
+  uint32 line_number = 1;
+  string sku = 2;
+  int32 quantity = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  // Final total sales price for the line, with discount and VAT applied
+  Money sales_price = 5;
+  // Total discount for the line
+  Money discount = 6;
+  Money vat_amount = 7;
+  Decimal vat_rate = 8;
+  optional string promotion_id = 9;
+}
