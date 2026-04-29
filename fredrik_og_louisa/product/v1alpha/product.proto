@@ -13,10 +13,10 @@ service ProductService {
 
 message ListProductsRequest {}
 
-// TODO Add product status
 message Product {
   string sku = 1;
   string ean = 12;
+  ProductStatus status = 16;
   string name = 2;
   Brand brand = 3;
   Money sales_price = 4;
@@ -43,7 +43,25 @@ message Brand {
   string name = 2;
 }
 
+// TODO Does this belong here?
 message Category {
   string id = 1;
   string name = 2;
+}
+
+// TODO Does this belong here?
+enum ProductStatus {
+  PRODUCT_STATUS_UNSPECIFIED = 0;
+  // Product is planned, but not yet stocked
+  PRODUCT_STATUS_PLANNED = 1;
+  // Product is a planned replacement for another stocked product.
+  // When the replaced product's balance reaches 0, this product will be assigned PRODUCT_STATUS_RELEASED.
+  PRODUCT_STATUS_REPLACEMENT = 2;
+  // Product is active and stocked
+  PRODUCT_STATUS_RELEASED = 3;
+  // Product is going out of assortment.
+  // When the balance reaches 0, this product will be assigned PRODUCT_STATUS_EXPIRED.
+  PRODUCT_STATUS_TO_BE_EXPIRED = 4;
+  // Product is no longer stocked
+  PRODUCT_STATUS_EXPIRED = 5;
 }
