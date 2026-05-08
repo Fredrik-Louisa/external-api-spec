@@ -24,8 +24,8 @@ message Warehouse {
   string town = 5;
   string country_code = 6;
   WarehouseType warehouse_type = 7;
-  time.Date opening_date = 8;
-  time.Date closing_date = 9;
+  optional time.Date opening_date = 8;
+  optional time.Date closing_date = 9;
 }
 
 enum WarehouseType {
