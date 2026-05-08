@@ -1,0 +1,36 @@
+// This API is currently EXPERIMENTAL and should be considered unstable. It may change at any point without notice.
+
+syntax = "proto3";
+
+package fredrik_og_louisa.warehouse.v1alpha;
+
+import "fredrik_og_louisa/time/date.proto";
+
+service WarehouseService {
+  rpc ListWarehouses(ListWarehousesRequest) returns (ListWarehousesResponse);
+}
+
+message ListWarehousesRequest {}
+
+message ListWarehousesResponse {
+  repeated Warehouse warehouses = 1;
+}
+
+message Warehouse {
+  string id = 1;
+  string name = 2;
+  string street_address = 3;
+  string zip_code = 4;
+  string town = 5;
+  string country_code = 6;
+  WarehouseType warehouse_type = 7;
+  time.Date opening_date = 8;
+  time.Date closing_date = 9;
+}
+
+enum WarehouseType {
+  WAREHOUSE_TYPE_UNSPECIFIED = 0;
+  WAREHOUSE_TYPE_STORE = 1;
+  WAREHOUSE_TYPE_MAIN = 2;
+  WAREHOUSE_TYPE_ECOM = 3;
+}
