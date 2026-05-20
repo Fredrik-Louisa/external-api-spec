@@ -43,13 +43,11 @@ message Product {
   string product_thumbnail_url = 15;
 }
 
-// TODO Does this belong here?
 message Brand {
   string id = 1;
   string name = 2;
 }
 
-// TODO Does this belong here?
 message Category {
   string id = 1;
   string name = 2;
@@ -66,7 +64,6 @@ message ProductBalance {
   optional time.Date last_receipt_date = 6;
 }
 
-// TODO Does this belong here?
 enum ProductStatus {
   PRODUCT_STATUS_UNSPECIFIED = 0;
   // Product is planned, but not yet stocked
