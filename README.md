@@ -143,8 +143,8 @@ update their position if you have fetched them before.
 
 ### Pinning a version
 
-To pin your integration to a specific API version, check out the relevant Git
-tag:
+To pin your integration to a specific version of the spec, check out the
+relevant Git tag:
 
 ```bash
 git clone --branch <tag> https://github.com/Fredrik-Louisa/external-api-spec.git
