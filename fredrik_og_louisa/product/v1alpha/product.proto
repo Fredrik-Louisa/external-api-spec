@@ -59,9 +59,9 @@ message ProductBalance {
   sint32 allocated = 3;
   sint32 ordered_amount = 4;
   // Last date a procurement order was placed for this product
-  optional time.Date last_order_date = 5;
+  optional time.Date last_ordered_date = 5;
   // Last date a procurement order was received for this product
-  optional time.Date last_receipt_date = 6;
+  optional time.Date last_received_date = 6;
 }
 
 enum ProductStatus {
