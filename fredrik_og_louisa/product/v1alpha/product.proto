@@ -66,16 +66,28 @@ message ProductBalance {
 
 enum ProductStatus {
   PRODUCT_STATUS_UNSPECIFIED = 0;
-  // Product is planned, but not yet stocked
-  PRODUCT_STATUS_PLANNED = 1;
-  // Product is a planned replacement for another stocked product.
-  // When the replaced product's balance reaches 0, this product will be assigned PRODUCT_STATUS_RELEASED.
-  PRODUCT_STATUS_REPLACEMENT = 2;
-  // Product is active and stocked
-  PRODUCT_STATUS_RELEASED = 3;
-  // Product is going out of assortment.
-  // When the balance reaches 0, this product will be assigned PRODUCT_STATUS_EXPIRED.
-  PRODUCT_STATUS_TO_BE_EXPIRED = 4;
-  // Product is no longer stocked
-  PRODUCT_STATUS_EXPIRED = 5;
+  // Product data is prepared in advance of release.
+  // Product is planned, but not yet ready to be stocked or sold.
+  PRODUCT_STATUS_PRELIMINARY = 1;
+  // Product is partially registered.
+  // It contains the bare minimum of data necessary to be stocked and distributed internally, but registration is not
+  // considered complete.
+  PRODUCT_STATUS_PARTIAL = 2;
+  // Product is fully registered and active.
+  // It is released, stocked, and ready to be distributed and sold.
+  PRODUCT_STATUS_ACTIVE = 3;
+  // Product is being phased out of assortment.
+  // It can still be sold until sold out, but will not be restocked.
+  PRODUCT_STATUS_PHASE_OUT = 4;
+  // Product has been discontinued.
+  // It is no longer stocked and is no longer part of the assortment.
+  // The product cannot be restocked or sold, though returns are still accepted.
+  PRODUCT_STATUS_DISCONTINUED = 5;
+  // The product has been archived and won't be updated or used for any business purpose going forward.
+  // Returns are not accepted.
+  // It is still available as a historical reference, but for most everyday purposes, it does not exist.
+  PRODUCT_STATUS_ARCHIVED = 6;
+  // SKU has changed. This product has been discontinued via an item number change, or due to a misregistration.
+  // It only exists for historical reference.
+  PRODUCT_STATUS_SKU_CHANGED = 7;
 }
