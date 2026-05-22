@@ -98,26 +98,53 @@ grpcurl -v -H 'authorization: Bearer <your token>' \
   fredrik_og_louisa.product.v1alpha.ProductService.ListProducts
 ```
 
-## Versioning and compatibility
+## Versioning
 
 The API is currently in alpha and makes no stability guarantees — breaking
 changes can happen at any time without a deprecation period.
 
-### Graduation plan
+This section describes how the **spec distribution** — this repository's
+packaged `.proto` files — is versioned and released. That is separate from the
+version of the API itself:
 
-When the API stabilizes, v1alpha will graduate directly to **v1**. There is no
-planned beta phase. No timeline has been set for this transition.
+- **API version** — each service is versioned independently. The version is the
+  segment in its Protocol Buffers package and directory path, e.g. the `v1alpha`
+  in `fredrik_og_louisa.product.v1alpha`, so different services may sit at
+  different versions. See [Graduation plan](#graduation-plan) for how `v1alpha`
+  will advance.
+- **Spec distribution version** — the semantic versioning, releases, and tags
+  below apply to snapshots of this repository, not to the API surface. A
+  release captures the state of all `.proto` files at a given commit.
 
-### Breaking changes
+### Semantic versioning
 
-Breaking changes are communicated through:
+This repository follows [semantic versioning](https://semver.org/). Releases
+are cut manually; each one is published as a `vMAJOR.MINOR.PATCH` Git tag (see
+[Tags](#tags)) with a matching entry on the
+[releases page](https://github.com/Fredrik-Louisa/external-api-spec/releases),
+which serves as the changelog.
 
-- **GitHub releases** on this repository
-- **Direct outreach** to known consumers
+### Tags
+
+Two kinds of tags are used in this repository:
+
+- **Release tags** (`vMAJOR.MINOR.PATCH`) mark published releases. They are
+  permanent: a release tag always points to the same commit and never moves.
+  Pin to one of these when you need a stable, reproducible version.
+- **Environment tags** (`staging` and `production`) track which version of the
+  spec each [API environment](#environments) is currently serving. Each one
+  points to the commit deployed to that environment and is moved whenever a new
+  version is deployed there. Check out `staging` or `production` to generate
+  clients that match what that environment is running today.
+
+Environment tags are mutable, so do not rely on them as a fixed version — use a
+release tag for that. Because they move, run `git fetch --tags --force` to
+update their position if you have fetched them before.
 
 ### Pinning a version
 
-To pin your integration to a specific API version, check out a Git tag:
+To pin your integration to a specific version of the spec, check out the
+relevant Git tag:
 
 ```bash
 git clone --branch <tag> https://github.com/Fredrik-Louisa/external-api-spec.git
@@ -126,17 +153,23 @@ git clone --branch <tag> https://github.com/Fredrik-Louisa/external-api-spec.git
 Or reference a specific tag in your build tooling (e.g. a Buf module pin or Git
 submodule revision). To track the latest changes, use the `main` branch.
 
-### Semantic versioning
+### Breaking changes
 
-This repository follows [semantic versioning](https://semver.org/). See the
-[releases page](https://github.com/Fredrik-Louisa/external-api-spec/releases)
-for the changelog.
+Breaking changes are communicated through:
+
+- **GitHub releases** on this repository
+- **Direct outreach** to known consumers
+
+### Graduation plan
+
+When the API stabilizes, v1alpha will graduate directly to **v1**. There is no
+planned beta phase. No timeline has been set for this transition.
+
+### Release notifications
+
+Watch this repository on GitHub to be notified of new releases.
 
 ## Support
 
 For questions or
 issues, [open an issue](https://github.com/Fredrik-Louisa/external-api-spec/issues).
-
-## Release notifications
-
-Watch this repository on GitHub to be notified of new releases
