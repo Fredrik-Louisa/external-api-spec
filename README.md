@@ -155,7 +155,7 @@ submodule revision). To track the latest changes, use the `main` branch.
 
 ### Breaking changes
 
-Breaking changes are communicated through
+Breaking changes are communicated through:
 
 - **GitHub releases** on this repository
 - **Direct outreach** to known consumers
