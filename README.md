@@ -98,7 +98,7 @@ grpcurl -v -H 'authorization: Bearer <your token>' \
   fredrik_og_louisa.product.v1alpha.ProductService.ListProducts
 ```
 
-## Versioning and compatibility
+## Versioning
 
 The API is currently in alpha and makes no stability guarantees — breaking
 changes can happen at any time without a deprecation period.
