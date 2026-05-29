@@ -30,13 +30,18 @@ message Product {
   Money cost_price = 6;
   // Category hierarchy ordered from least to most specific
   repeated Category category_hierarchy = 7;
-  optional string parent_sku = 8;
+  // Deprecated: use variant.parent_sku instead. Will be removed in a future version.
+  optional string parent_sku = 8 [deprecated = true];
+  // Product variant data.
+  // This field will be set if and only if this product is a variant.
+  optional Variant variant = 18;
   // Net weight in grams
   Decimal net_weight_g = 9;
   // Gross weight in grams
   Decimal gross_weight_g = 10;
   // Volume in milliliters
   Decimal volume_ml = 11;
+  string color_name = 17;
 
   string product_page_url = 13;
   string product_image_url = 14;
@@ -51,6 +56,25 @@ message Brand {
 message Category {
   string id = 1;
   string name = 2;
+}
+
+message Variant {
+  string parent_sku = 1;
+  VariantKind kind = 2;
+}
+
+// This enum describes what kind of variant a product is, and tells you what field acts as the discriminator for
+// the variant.
+// For example, if a product is a color variant, you should read the color_name field to tell it apart from its
+// siblings. The mapping is documented on each enum value.
+enum VariantKind {
+  VARIANT_KIND_UNSPECIFIED = 0;
+  // Field: color_name
+  VARIANT_KIND_COLOR = 1;
+  // Field: volume_ml
+  VARIANT_KIND_VOLUME = 2;
+  // Field: net_weight_g
+  VARIANT_KIND_WEIGHT = 3;
 }
 
 message ProductBalance {
