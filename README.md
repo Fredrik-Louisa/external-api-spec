@@ -41,7 +41,7 @@ curl --request POST \
   --data '{
     "client_id": "<your client ID>",
     "client_secret": "<your client secret>",
-    "audience": "https://fl-intern.no/",
+    "audience": "https://api.fl-intern.no/",
     "grant_type": "client_credentials"
   }'
 ```
@@ -75,7 +75,7 @@ it before it expires to avoid unnecessary token requests.
 |                | URL                                             |
 |----------------|-------------------------------------------------|
 | Token endpoint | `https://auth.staging.fl-intern.no/oauth/token` |
-| Audience       | `https://staging.fl-intern.no/`                 |
+| Audience       | `https://api.staging.fl-intern.no/`             |
 | API base URL   | `https://api.staging.fl-intern.no`              |
 
 ### Production
@@ -83,7 +83,7 @@ it before it expires to avoid unnecessary token requests.
 |                | URL                                     |
 |----------------|-----------------------------------------|
 | Token endpoint | `https://auth.fl-intern.no/oauth/token` |
-| Audience       | `https://fl-intern.no/`                 |
+| Audience       | `https://api.fl-intern.no/`             |
 | API base URL   | `https://api.fl-intern.no`              |
 
 ## Example
