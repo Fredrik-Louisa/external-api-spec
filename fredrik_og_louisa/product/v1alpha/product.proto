@@ -20,6 +20,8 @@ message ListProductBalancesRequest {
 }
 
 message Product {
+  reserved 8;
+
   string sku = 1;
   string ean = 12;
   ProductStatus status = 16;
@@ -30,8 +32,6 @@ message Product {
   Money cost_price = 6;
   // Category hierarchy ordered from least to most specific
   repeated Category category_hierarchy = 7;
-  // Deprecated: use variant.parent_sku instead. Will be removed in a future version.
-  optional string parent_sku = 8 [deprecated = true];
   // Product variant data.
   // This field will be set if and only if this product is a variant.
   optional Variant variant = 18;
