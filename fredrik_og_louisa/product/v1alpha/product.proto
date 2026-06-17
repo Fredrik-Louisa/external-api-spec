@@ -119,11 +119,32 @@ enum ProductStatus {
 
 enum ProductType {
   PRODUCT_TYPE_UNSPECIFIED = 0;
+  // A standard sellable product.
+  // This is the default classification and covers the bulk of the assortment.
   PRODUCT_TYPE_NORMAL_PRODUCT = 1;
+  // A grouping record for a set of variant children; not itself sellable.
+  // Variant children reference this product via `Variant.parent_sku`.
+  // Mutually exclusive with the `variant` field: a `PARENT` never has
+  // `variant` set, and a product with `variant` set is never `PARENT`.
   PRODUCT_TYPE_PARENT = 2;
+  // A product kept on the shop floor that customers can try before buying
+  // (e.g. a display unit customers can spray or apply). Not sellable.
   PRODUCT_TYPE_TESTER = 3;
+  // A small free portion (e.g. a sachet or miniature) of a product, given
+  // to the customer alongside a purchase to entice them to buy the full
+  // product. Samples exist only to be given away. Not sellable.
   PRODUCT_TYPE_SAMPLE = 4;
+  // A product given to the customer for free when their purchase meets
+  // certain criteria (e.g. a complimentary pouch on orders above a certain
+  // value), used to entice customers to qualify.
   PRODUCT_TYPE_GIFT_WITH_PURCHASE = 5;
+  // A product record representing a service or fee rather than physical
+  // merchandise. Examples include shipping fees, gift wrapping, gift cards,
+  // and in-store beauty treatments.
   PRODUCT_TYPE_SALES_SERVICE = 6;
+  // A product record representing an internal-use item rather than
+  // merchandise sold to customers. Examples include packaging supplies,
+  // store fixtures, staff uniforms, and marketing material such as signage
+  // or displays. Not sellable.
   PRODUCT_TYPE_MATERIAL = 7;
 }
