@@ -26,6 +26,8 @@ message Product {
   string ean = 12;
   ProductStatus status = 16;
   ProductType type = 19;
+  AbcClass abc_class = 20;
+  XyzClass xyz_class = 21;
   string name = 2;
   Brand brand = 3;
   Money sales_price = 4;
@@ -115,6 +117,26 @@ enum ProductStatus {
   // SKU has changed. This product has been discontinued via an item number change, or due to a misregistration.
   // It only exists for historical reference.
   PRODUCT_STATUS_SKU_CHANGED = 7;
+}
+
+enum AbcClass {
+  ABC_CLASS_UNSPECIFIED = 0;
+  ABC_CLASS_A = 1;
+  ABC_CLASS_B = 2;
+  ABC_CLASS_C = 3;
+  ABC_CLASS_D = 4;
+  ABC_CLASS_E = 5;
+  ABC_CLASS_F = 6;
+  ABC_CLASS_NEW = 7;
+  ABC_CLASS_ONE_SHOT = 8;
+}
+
+enum XyzClass {
+  XYZ_CLASS_UNSPECIFIED = 0;
+  XYZ_CLASS_X = 1;
+  XYZ_CLASS_Y = 2;
+  XYZ_CLASS_Z = 3;
+  XYZ_CLASS_Z2 = 4;
 }
 
 enum ProductType {
