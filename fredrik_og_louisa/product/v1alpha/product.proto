@@ -25,6 +25,7 @@ message Product {
   string sku = 1;
   string ean = 12;
   ProductStatus status = 16;
+  ProductType type = 19;
   string name = 2;
   Brand brand = 3;
   Money sales_price = 4;
@@ -114,4 +115,15 @@ enum ProductStatus {
   // SKU has changed. This product has been discontinued via an item number change, or due to a misregistration.
   // It only exists for historical reference.
   PRODUCT_STATUS_SKU_CHANGED = 7;
+}
+
+enum ProductType {
+  PRODUCT_TYPE_UNSPECIFIED = 0;
+  PRODUCT_TYPE_NORMAL_PRODUCT = 1;
+  PRODUCT_TYPE_PARENT = 2;
+  PRODUCT_TYPE_TESTER = 3;
+  PRODUCT_TYPE_SAMPLE = 4;
+  PRODUCT_TYPE_GIFT_WITH_PURCHASE = 5;
+  PRODUCT_TYPE_SALES_SERVICE = 6;
+  PRODUCT_TYPE_MATERIAL = 7;
 }
