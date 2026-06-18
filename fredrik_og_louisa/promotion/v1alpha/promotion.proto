@@ -34,6 +34,7 @@ message Promotion {
   string id = 1;
   string description = 2;
   PromotionStatus status = 3;
+  PromotionCategory category = 6;
   // First date the promotion is valid
   time.Date valid_from = 4;
   // Last date the promotion is valid
@@ -45,6 +46,32 @@ enum PromotionStatus {
   PROMOTION_STATUS_PLANNED = 1;
   PROMOTION_STATUS_ACTIVE = 2;
   PROMOTION_STATUS_ENDED = 3;
+}
+
+enum PromotionCategory {
+  PROMOTION_CATEGORY_UNSPECIFIED = 0;
+  // A regular promotion run as part of normal campaign activity.
+  PROMOTION_CATEGORY_NORMAL = 1;
+  // A promotion tied to the opening of a new store.
+  // Typically time-limited and scoped to the location hosting the
+  // opening event, used to attract customers during the launch period.
+  PROMOTION_CATEGORY_NEW_STORE_OPENING = 2;
+  // A promotion run through the outlet channel.
+  // Used to clear end-of-life or surplus inventory at reduced prices,
+  // typically on items being phased out of the main assortment.
+  PROMOTION_CATEGORY_OUTLET = 3;
+  // A short, time-boxed promotion.
+  // Used for quick, high-impact offers rather than sustained campaign activity.
+  PROMOTION_CATEGORY_FLASH = 4;
+  // A promotion run to clear out inventory at a store that is being closed.
+  // Scoped to the closing store.
+  PROMOTION_CATEGORY_STORE_CLOSING = 5;
+  // A promotion run during the Black Friday / Black Week sales period.
+  PROMOTION_CATEGORY_BLACK_WEEK = 6;
+  // A promotion in the curated "Best Buy" featured-deal selection.
+  // These products are highlighted on the storefront with a "Best Buy"
+  // badge as standout value picks, distinct from regular campaign pricing.
+  PROMOTION_CATEGORY_BEST_BUY = 7;
 }
 
 message PromotionLine {
