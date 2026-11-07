@@ -10,17 +10,24 @@ import "fredrik_og_louisa/time/date.proto";
 import "google/protobuf/timestamp.proto";
 
 service CustomerOrderService {
+  // Stream customer orders placed in a given period.
   rpc ListCustomerOrders(ListCustomerOrdersRequest) returns (stream CustomerOrder);
 }
 
 message ListCustomerOrdersRequest {
+  // The first day of the period, inclusive. Unset means unbounded.
   time.Date from = 1;
+  // The last day of the period, inclusive. Unset means unbounded.
   time.Date to = 2;
 }
 
+// A single customer order. I.e. either a sale in a store or an order placed in the web shop.
 message CustomerOrder {
   string id = 1;
+  // The ID of the store the order was placed in. Matches `Warehouse.id` in `WarehouseService`, whose
+  // `warehouse_type` tells what kind of store it is.
   string warehouse_id = 2;
+  // When the order was placed.
   google.protobuf.Timestamp timestamp = 3;
   repeated CustomerOrderLine lines = 4;
 }
@@ -28,6 +35,7 @@ message CustomerOrder {
 message CustomerOrderLine {
   uint32 line_number = 1;
   string sku = 2;
+  // The order quantity. Negative for returns.
   int32 quantity = 3;
   google.protobuf.Timestamp timestamp = 4;
   // Final total sales price for the line, with discount and VAT applied
